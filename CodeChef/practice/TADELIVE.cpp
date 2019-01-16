@@ -41,17 +41,59 @@ int main()
         freopen("in.txt","r",stdin);
     #endif
     
-	ll i, j, k, a, b, n, m, t, ans;
+	ll i, j, k, a, b, n, m, t, ans, x, y;
 	string s;
 	
 	cin >> n >> a >> b;
 	
 	vi A(n),B(n);
 	
+	vp C(n);
+	
 	REP(i,n) cin >> A[i];
 	REP(i,n) cin >> B[i];
 	
+	REP(i,n) C[i] = mp(abs(A[i]-B[i]),i);
 	
+	sort(C.begin(), C.end());
+	
+	x = y = ans = 0;
+	
+	REPo(i,n-1)
+	{
+	    if(A[C[i].sc] > B[C[i].sc])
+	    {
+	        if(x+1 <= a)
+	        {
+	            x++;
+    	        ans += A[C[i].sc];
+	        }
+	        else
+	        {
+	            y++;
+    	        ans += B[C[i].sc];
+	        }
+	    }
+	    else if(A[C[i].sc] < B[C[i].sc])
+	    {
+	        if(y+1 <= b)
+	        {
+	            y++;
+    	        ans += B[C[i].sc];
+	        }
+	        else
+	        {
+	            x++;
+    	        ans += A[C[i].sc];
+	        }
+	    } 
+	    else
+	    {
+	        ans += B[C[i].sc];
+	    }
+	}
+	
+	cout << ans << endl;
 	
 	return 0;
 }
