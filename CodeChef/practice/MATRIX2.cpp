@@ -33,25 +33,6 @@ typedef pair<ll, ll> pll;
 typedef pair<int, int> ii;
 typedef pair<ll, ll> iill;
 
-vi primes;
-
-void pre(int n)
-{
-    vi A(n,1);
-    
-    A[0] = A[1] = 0;
-    int i;
-    REP(i,n)
-    {
-        if(A[i] == 1)
-        {
-            primes.pb(i);
-            for(int j = 2; j*i < n; j++)
-                A[j*i] = 0;
-        }
-    }
-}
-
 int main()
 {
     Himanshu Gautam
